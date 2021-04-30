@@ -1,6 +1,6 @@
 # React Native Pokédex
 
-Pokedex yang menampilkan pokemon yang dicari maupun secara acak.
+Aplikasi Pokedex yang menampilkan pokemon, baik yang dicari maupun secara acak.
 
 📕 Untuk mendapatkan update API terbaru [PokéAPI](https://pokeapi.co/)
 
