@@ -11,6 +11,6 @@ Aplikasi Pokedex yang menampilkan pokemon, baik yang dicari maupun secara acak.
 ## Cara Menjalankan
 
 ```bash
-npm install # or yarn install
-expo start
+Clone Repositori
+npm start
 ```
