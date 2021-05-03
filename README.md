@@ -11,6 +11,8 @@ Aplikasi Pokedex yang menampilkan pokemon, baik yang dicari maupun secara acak.
 ## Cara Menjalankan
 
 ```bash
-Clone Repositori
-npm start
+Buka Terminal # Cmd atau gitbash
+Arahkan path # $cd Tubes-Pam-2021
+Clone Repositori # $git clone https://github.com/LukmanAH/Tubes-PAM-2021.git
+Jalankan # $npm start
 ```
