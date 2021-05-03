@@ -15,6 +15,7 @@ import {
   useWindowDimensions,
   Button,
   Text,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
 import Animated, {
@@ -104,8 +105,8 @@ export default () => {
       `${pokemon.name}: ${pokemon.description}`,
       {
         language: 'en-US',
-        pitch: 0.8,
-        rate: 0.9,
+        pitch: 0.9,
+        rate: 1.0,
         onStart: () => {
           overlayOpacity.value = withTiming(0, {
             duration: 500,
@@ -229,7 +230,7 @@ export default () => {
             <View style={styles.greenLight} />
           </View>
 
-          <View style={{ backgroundColor: 'white', flexDirection: 'row', margin: 5, borderRadius: 5 }}>
+          <View style={styles.searchView}>
             <TextInput
               style={{ height: 40, paddingLeft: 5, flex: 3 }}
               placeholder="Type to search"
@@ -242,7 +243,7 @@ export default () => {
             />
 
             <TouchableOpacity
-              style={styles.button}
+              style={styles.buttonSearch}
               onPress={searchResult}
             >
               <Text>Seach</Text>
@@ -324,10 +325,13 @@ export default () => {
                     ]}
                   />
                 </View>
+
+              </View>
+              <View style={styles.detailView}>
+                <View style={styles.pokeName}>{pokemon.name}</View>
+                <View style={styles.pokeDesc}>{pokemon.description} </View>
               </View>
 
-              <View style={styles.pokeName}>{pokemon.name} </View>
-              <View style={styles.pokeDesc}>{pokemon.description} </View>
             </View>
 
           </Pressable>
@@ -343,28 +347,14 @@ export default () => {
 const styles = StyleSheet.create({
   cover: {
     ...StyleSheet.absoluteFillObject,
-    top: 150,
+    top: 155,
     zIndex: 1,
     flexDirection: 'row',
     backgroundColor: 'red',
     alignItems: 'center',
     justifyContent: 'space-between',
-    shadowColor: 'black',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowRadius: 10,
-    shadowOpacity: 0.4,
-  },
-
-  button: {
-    alignItems: "center",
-    backgroundColor: "#DDDDDD",
-    padding: 10,
-    flex: 1,
-    borderTopRightRadius: 5,
-    borderBottomRightRadius: 5,
+    borderTopWidth: 2,
+    borderTopColor: 'white',
   },
 
   coverHandle: {
@@ -372,9 +362,9 @@ const styles = StyleSheet.create({
     width: 40,
     // Orange
     backgroundColor: 'rgb(255, 165, 0)',
-    borderWidth: 4,
+    borderWidth: 2,
     // Dark orange
-    borderColor: 'rgba(0, 0, 0, 0.2)',
+    borderColor: 'black',
     transform: [
       { rotate: '45deg' },
       { translateX: -30 },
@@ -397,16 +387,9 @@ const styles = StyleSheet.create({
   lights: {
     flexDirection: 'row',
     borderBottomWidth: 2,
-    borderBottomColor: 'rgb(15, 15, 15)',
+    borderBottomColor: 'white',
     backgroundColor: 'red',
-    shadowColor: 'black',
-    shadowOffset: {
-      width: 0,
-      height: 20,
-    },
-    shadowRadius: 10,
-    shadowOpacity: 0.4,
-    paddingBottom: 24,
+    paddingBottom: 15,
   },
   mainLight: {
     marginLeft: 20,
@@ -467,23 +450,38 @@ const styles = StyleSheet.create({
     // Dark green
     borderColor: 'rgb(0, 100, 0)',
   },
+
+  searchView: {
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    marginTop: 5,
+    marginHorizontal: 20,
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: 'black',
+  },
+
+  buttonSearch: {
+    alignItems: "center",
+    backgroundColor: "grey",
+    padding: 10,
+    flex: 1,
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5,
+  },
+
   details: {
+    flexDirection: 'column',
     height: '100%',
-    borderWidth: 10,
-    borderColor: 'rgba(0, 0, 0, 0.15)',
   },
   screen: {
+    flex: 1,
     backgroundColor: 'white',
     marginHorizontal: 20,
     marginVertical: 30,
     borderRadius: 10,
-    shadowColor: 'black',
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowRadius: 10,
-    shadowOpacity: 0.2,
+    borderWidth: 2,
+    borderColor: 'black',
   },
   screenHeader: {
     flexDirection: 'row',
@@ -507,9 +505,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'lightblue',
     padding: 15,
-    borderWidth: 3,
-    borderBottomWidth: 0,
-    borderColor: 'rgba(0, 0, 0, 0.2)',
+    borderWidth: 1,
+    borderColor: 'black',
   },
   screenPokemonOverlay: {
     ...StyleSheet.absoluteFillObject,
@@ -541,25 +538,40 @@ const styles = StyleSheet.create({
   screenSoundHoleSmall: {
     width: 35,
   },
-  pokeName: {
+
+  detailView: {
+    flex: 1,
+    flexDirection: 'column',
     margin: 20,
-    backgroundColor: 'darkgreen',
-    height: 50,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    borderColor: 'black',
+    borderWidth: 2,
+  },
+
+  pokeName: {
+    flex: 1,
+    margin: 20,
+    backgroundColor: 'green',
     alignItems: 'center',
     fontSize: 30,
     borderRadius: 5,
-    borderWidth: 5,
-    borderColor: 'rgba(0, 0, 0, 0.15)',
+    borderWidth: 1,
+    borderColor: 'black',
+    color: 'white',
   },
 
   pokeDesc: {
+    flex: 2,
     margin: 20,
     backgroundColor: 'green',
-    height: 130,
+    height: 120,
     fontSize: 20,
     borderRadius: 5,
-    borderWidth: 5,
-    borderColor: 'rgba(0, 0, 0, 0.15)',
+    borderColor: 'black',
+    borderWidth: 1,
+    padding: 5,
+    color: 'white',
   },
 
 });
