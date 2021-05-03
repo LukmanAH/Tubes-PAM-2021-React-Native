@@ -7,6 +7,7 @@ Aplikasi Pokedex yang menampilkan pokemon, baik yang dicari maupun secara acak.
 🔊 Menyebutkan nama dan deskripsi pokemon menggunakan [expo-speech](https://docs.expo.io/versions/latest/sdk/speech)
 
 ⚡️ Membuat efek animasi dengan [Reanimated2](https://docs.swmansion.com/react-native-reanimated/)
+Berpindah halaman dengan [React-Navigation](https://reactnavigation.org/docs/getting-started)
 
 ## Cara Menjalankan
 
