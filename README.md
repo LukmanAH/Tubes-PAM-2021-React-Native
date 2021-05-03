@@ -1,18 +1,14 @@
 # React Native Pokédex
 
-A first generation Pokédex that renders a random Pokémon.
+Aplikasi Pokedex yang menampilkan pokemon, baik yang dicari maupun secara acak.
 
-[Learn how it was built in this video](https://youtu.be/QeAZOrGodI0)
+📕 Untuk mendapatkan update API terbaru [PokéAPI](https://pokeapi.co/)
 
-<img src="assets/pokedex.gif" width="30%" />
+🔊 Menyebutkan nama dan deskripsi pokemon menggunakan [expo-speech](https://docs.expo.io/versions/latest/sdk/speech)
 
-📕 Get up-to-date Pokémon information using [PokéAPI](https://pokeapi.co/)
+⚡️ Membuat efek animasi dengan [Reanimated2](https://docs.swmansion.com/react-native-reanimated/)
 
-🔊 Speak the name and the description using [expo-speech](https://docs.expo.io/versions/latest/sdk/speech)
-
-⚡️ Animate smoothly using [Reanimated2](https://docs.swmansion.com/react-native-reanimated/)
-
-## Run
+## Cara Menjalankan
 
 ```bash
 npm install # or yarn install
