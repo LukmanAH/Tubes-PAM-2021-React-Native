@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
 import { StyleSheet } from 'react-native'
-import Home from './Home';
 
 const Favorit = ({ navigation }) => {
 
@@ -57,6 +56,11 @@ class ListFavorite extends Component {
   }
 
 
+  async klikName(id) {
+    navigation.navigate('home');
+    searchPokemon();
+  }
+
   async klikDelete(id) {
     await fetch(this.url + "/?op=delete&id=" + id)
       .then((response) => response.json())
@@ -78,11 +82,42 @@ class ListFavorite extends Component {
           {
             this.state.listData.map((val, index) => (
               <View style={styles.viewList} key={index}>
-                <Text style={styles.textListNama}>{val.nama}</Text>
+                <Text style={styles.textListNama} onPress={() => this.klikName(val.nama)}> {val.nama}</Text>
                 <Text style={styles.textListDelete} onPress={() => this.klikDelete(val.id)}>Delete</Text>
               </View>
             ))
           }
+
+          <View style={styles.viewList}>
+            <Text style={styles.textListNama} >pikachu</Text>
+            <Text style={styles.textListDelete}>Delete</Text>
+          </View>
+
+          <View style={styles.viewList}>
+            <Text style={styles.textListNama} >raichu</Text>
+            <Text style={styles.textListDelete}>Delete</Text>
+          </View>
+
+          <View style={styles.viewList}>
+            <Text style={styles.textListNama} >rapidash</Text>
+            <Text style={styles.textListDelete}>Delete</Text>
+          </View>
+
+          <View style={styles.viewList}>
+            <Text style={styles.textListNama} >pikachu</Text>
+            <Text style={styles.textListDelete}>Delete</Text>
+          </View>
+
+          <View style={styles.viewList}>
+            <Text style={styles.textListNama} >raichu</Text>
+            <Text style={styles.textListDelete}>Delete</Text>
+          </View>
+
+          <View style={styles.viewList}>
+            <Text style={styles.textListNama} >rapidash</Text>
+            <Text style={styles.textListDelete}>Delete</Text>
+          </View>
+
         </View>
       </View>
     );
@@ -95,7 +130,7 @@ export default Favorit;
 const styles = StyleSheet.create({
   viewWrapper: {
     flex: 11,
-    backgroundColor: 'red'
+    backgroundColor: 'lightblue'
   },
   viewForm: {
     flex: 2,
@@ -115,21 +150,28 @@ const styles = StyleSheet.create({
   },
   viewList: {
     flexDirection: 'row',
-    padding: 5,
-    borderBottomWidth: 1,
-    borderBottomColor: '#dedede'
+    padding: 10,
+    marginVertical: 5,
+    marginHorizontal: 5,
+    borderWidth: 2,
+    borderColor: 'black',
+    borderRadius: 5,
+    backgroundColor: 'white',
+
   },
   textListNama: {
     flex: 3,
     fontSize: 20,
     fontWeight: 'bold'
   },
-  textListEdit: {
-    color: 'blue',
-    marginRight: 20
-  },
+
   textListDelete: {
-    color: 'red'
+    marginHorizontal: 5,
+    color: 'white',
+    borderWidth: 1,
+    borderRadius: 3,
+    borderColor: 'black',
+    backgroundColor: 'red',
   },
 
 

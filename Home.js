@@ -26,7 +26,7 @@ import Animated, {
 import * as Speech from 'expo-speech';
 
 
-const fetchPokemon = async (id) => {
+export const fetchPokemon = async (id) => {
   const responsePokemon = await fetch(
     `https://pokeapi.co/api/v2/pokemon/${id}`
   );
@@ -604,6 +604,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'yellow',
     margin: 10,
     marginRight: 30,
+    borderWidth: 1,
+    borderColor: 'black',
+    borderRadius: 3,
   },
 
   detailView: {
