@@ -88,35 +88,7 @@ class ListFavorite extends Component {
             ))
           }
 
-          <View style={styles.viewList}>
-            <Text style={styles.textListNama} >pikachu</Text>
-            <Text style={styles.textListDelete}>Delete</Text>
-          </View>
 
-          <View style={styles.viewList}>
-            <Text style={styles.textListNama} >raichu</Text>
-            <Text style={styles.textListDelete}>Delete</Text>
-          </View>
-
-          <View style={styles.viewList}>
-            <Text style={styles.textListNama} >rapidash</Text>
-            <Text style={styles.textListDelete}>Delete</Text>
-          </View>
-
-          <View style={styles.viewList}>
-            <Text style={styles.textListNama} >pikachu</Text>
-            <Text style={styles.textListDelete}>Delete</Text>
-          </View>
-
-          <View style={styles.viewList}>
-            <Text style={styles.textListNama} >raichu</Text>
-            <Text style={styles.textListDelete}>Delete</Text>
-          </View>
-
-          <View style={styles.viewList}>
-            <Text style={styles.textListNama} >rapidash</Text>
-            <Text style={styles.textListDelete}>Delete</Text>
-          </View>
 
         </View>
       </View>
