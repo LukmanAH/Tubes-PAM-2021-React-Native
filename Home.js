@@ -270,7 +270,7 @@ function Home({ navigation }) {
                 style={styles.buttonSearch}
                 onPress={searchResult}
               >
-                <Text>Seach</Text>
+                <Text>Find Pokemon</Text>
               </TouchableOpacity>
             </View>
 
@@ -278,7 +278,7 @@ function Home({ navigation }) {
               style={styles.buttonNavigation}
               onPress={goToFavorite}
             >
-              <Text>My Favorit</Text>
+              <Text>My Favorites</Text>
             </TouchableOpacity>
           </View>
 
@@ -329,7 +329,7 @@ function Home({ navigation }) {
                   <TouchableOpacity
                     style={styles.buttonAddFavorit}
                     onPress={saveToFavorite} >
-                    <Text>+ Favorit</Text>
+                    <Text> Add to Favorite</Text>
                   </TouchableOpacity>
 
                   <View
@@ -392,7 +392,7 @@ const styles = StyleSheet.create({
     top: 155,
     zIndex: 1,
     flexDirection: 'row',
-    backgroundColor: 'red',
+    backgroundColor: '#FFEB66',
     alignItems: 'center',
     justifyContent: 'space-between',
     borderTopWidth: 2,
@@ -424,13 +424,13 @@ const styles = StyleSheet.create({
   },
   pokedex: {
     flex: 1,
-    backgroundColor: 'red',
+    backgroundColor: '#FFEB66',
   },
   lights: {
     flexDirection: 'row',
     borderBottomWidth: 2,
     borderBottomColor: 'white',
-    backgroundColor: 'red',
+    backgroundColor: 'darkred',
     paddingBottom: 15,
   },
   mainLight: {
@@ -515,7 +515,7 @@ const styles = StyleSheet.create({
   },
 
   buttonNavigation: {
-    backgroundColor: 'yellow',
+    backgroundColor: 'green',
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
@@ -599,7 +599,7 @@ const styles = StyleSheet.create({
   },
 
   buttonAddFavorit: {
-    width: 70,
+    width: 110,
     height: 20,
     backgroundColor: 'yellow',
     margin: 10,
