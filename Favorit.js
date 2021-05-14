@@ -20,7 +20,7 @@ const Favorit = ({ navigation }) => {
         </TouchableOpacity>
 
         <View style={styles.titlePageView}>
-          <text>Favorite Character</text>
+          <text>Favorite Pokemon</text>
         </View>
 
       </View>
