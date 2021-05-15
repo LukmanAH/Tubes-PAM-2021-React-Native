@@ -1,7 +1,4 @@
-import React, {
-  useEffect,
-  useState,
-} from 'react';
+import React, { useEffect, useState } from "react";
 
 import {
   Image,
@@ -14,7 +11,7 @@ import {
   TouchableOpacity,
   useWindowDimensions,
   Text,
-} from 'react-native';
+} from "react-native";
 
 import Animated, {
   runOnJS,
@@ -22,9 +19,8 @@ import Animated, {
   useSharedValue,
   withTiming,
   withRepeat,
-} from 'react-native-reanimated';
-import * as Speech from 'expo-speech';
-
+} from "react-native-reanimated";
+import * as Speech from "expo-speech";
 
 export const fetchPokemon = async (id) => {
   const responsePokemon = await fetch(
@@ -40,17 +36,12 @@ export const fetchPokemon = async (id) => {
 
   const name = pokemonDetails.name;
 
-  const description =
-    pokemonDetails.flavor_text_entries[0]
-      .flavor_text;
+  const description = pokemonDetails.flavor_text_entries[0].flavor_text;
 
-  const image =
-    pokemon.sprites.other['official-artwork']
-      .front_default;
+  const image = pokemon.sprites.other["official-artwork"].front_default;
 
   return { name, description, image };
 };
-
 
 function Home({ navigation }) {
   const dimensions = useWindowDimensions();
@@ -60,27 +51,23 @@ function Home({ navigation }) {
   const lightOpacity = useSharedValue(1);
 
   const [pokemon, setPokemon] = useState({
-    name: '',
-    description: '',
+    name: "",
+    description: "",
     image: null,
   });
 
   const updatePokemon = async () => {
-    const pokemonID =
-      Math.floor(Math.random() * 150) + 1;
+    const pokemonID = Math.floor(Math.random() * 150) + 1;
 
     const pokemon = await fetchPokemon(pokemonID);
 
     setPokemon(pokemon);
-
   };
 
   const searchPokemon = async () => {
-
     const pokemon = await fetchPokemon(text);
 
     setPokemon(pokemon);
-
   };
 
   useEffect(() => {
@@ -100,23 +87,20 @@ function Home({ navigation }) {
   };
 
   const sayPokemonName = () => {
-    Speech.speak(
-      `${pokemon.name}: ${pokemon.description}`,
-      {
-        language: 'en-US',
-        pitch: 0.9,
-        rate: 1.0,
-        onStart: () => {
-          overlayOpacity.value = withTiming(0, {
-            duration: 500,
-          });
+    Speech.speak(`${pokemon.name}: ${pokemon.description}`, {
+      language: "en-US",
+      pitch: 0.9,
+      rate: 1.0,
+      onStart: () => {
+        overlayOpacity.value = withTiming(0, {
+          duration: 500,
+        });
 
-          startFlashingLight();
-        },
-        onDone: stopFlashingLight,
-        onStopped: stopFlashingLight,
-      }
-    );
+        startFlashingLight();
+      },
+      onDone: stopFlashingLight,
+      onStopped: stopFlashingLight,
+    });
   };
 
   const toggleCover = () => {
@@ -147,7 +131,6 @@ function Home({ navigation }) {
   };
 
   const searchResult = () => {
-
     // Close
     translation.value = withTiming(
       0,
@@ -162,24 +145,14 @@ function Home({ navigation }) {
     Speech.stop();
 
     // Open
-    translation.value = withTiming(
-      dimensions.width,
-      { duration: 500 },
-      () => {
-        runOnJS(sayPokemonName)();
-      }
-
-
-    );
-
-
+    translation.value = withTiming(dimensions.width, { duration: 500 }, () => {
+      runOnJS(sayPokemonName)();
+    });
   };
 
   const coverStyle = useAnimatedStyle(() => {
     return {
-      transform: [
-        { translateX: translation.value },
-      ],
+      transform: [{ translateX: translation.value }],
     };
   });
 
@@ -195,75 +168,61 @@ function Home({ navigation }) {
     };
   });
 
-
-
   const url = "http://localhost/api/api.php";
 
   const saveToFavorite = () => {
-
     var urlAksi = url + "/?op=create";
 
     fetch(urlAksi, {
-      method: 'post',
+      method: "post",
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: "nama=" + pokemon.name
-    })
-      .then((response) => response.json())
+      body: "nama=" + pokemon.name,
+    }).then((response) => response.json());
+  };
 
-  }
-
-  const [text, setText] = useState('raichu');
+  const [text, setText] = useState("raichu");
 
   const goToFavorite = () => {
-    navigation.navigate('favorit');
+    navigation.navigate("favorit");
     Speech.stop();
-  }
+  };
 
   return (
     <>
       <StatusBar hidden />
 
-      <Animated.View
-        pointerEvents="none"
-        style={[styles.cover, coverStyle]}
-      >
+      <Animated.View pointerEvents="none" style={[styles.cover, coverStyle]}>
         <View style={styles.coverHandle} />
         <View style={styles.coverBinding} />
       </Animated.View>
-
 
       <View style={styles.pokedex}>
         <SafeAreaView>
           <View style={styles.lights}>
             <View style={styles.mainLight}>
-              <Animated.View
-                style={[
-                  styles.mainLightInner,
-                  lightStyle,
-                ]}
-              />
+              <Animated.View style={[styles.mainLightInner, lightStyle]} />
             </View>
 
             <View style={styles.redLight} />
             <View style={styles.orangeLight} />
             <View style={styles.greenLight} />
-
           </View>
 
-          <View style={{ flexDirection: 'row' }}>
-
+          <View style={{ flexDirection: "row" }}>
             <View style={styles.searchView}>
               <TextInput
-                style={{ height: 40, paddingLeft: 5, flex: 3, backgroundColor: 'white' }}
+                style={{
+                  height: 40,
+                  paddingLeft: 5,
+                  flex: 3,
+                  backgroundColor: "white",
+                }}
                 placeholder="Type to search"
-                onChangeText={
-                  text => {
-                    setText(text)
-                  }
-                }
-
+                onChangeText={(text) => {
+                  setText(text);
+                }}
               />
 
               <TouchableOpacity
@@ -282,59 +241,37 @@ function Home({ navigation }) {
             </TouchableOpacity>
           </View>
 
-
-          <Pressable
-            onPress={toggleCover}
-            style={styles.pokedexTouchable}
-          >
-
+          <Pressable onPress={toggleCover} style={styles.pokedexTouchable}>
             <View style={styles.details}>
               <View style={styles.screen}>
                 <View style={styles.screenHeader}>
-                  <View
-                    style={
-                      styles.screenHeaderHole
-                    }
-                  />
+                  <View style={styles.screenHeaderHole} />
 
-                  <View
-                    style={
-                      styles.screenHeaderHole
-                    }
-                  />
+                  <View style={styles.screenHeaderHole} />
                 </View>
 
-                <View
-                  style={styles.screenPokemon}
-                >
+                <View style={styles.screenPokemon}>
                   <Animated.View
-                    style={[
-                      styles.screenPokemonOverlay,
-                      overlayStyle,
-                    ]}
+                    style={[styles.screenPokemonOverlay, overlayStyle]}
                   />
 
                   <Image
                     source={{
                       uri: pokemon.image,
                     }}
-                    style={
-                      styles.screenPokemonImage
-                    }
+                    style={styles.screenPokemonImage}
                   />
                 </View>
 
-                <View style={{ flexDirection: 'row', alignSelf: 'flex-end' }}>
-
+                <View style={{ flexDirection: "row", alignSelf: "flex-end" }}>
                   <TouchableOpacity
                     style={styles.buttonAddFavorit}
-                    onPress={saveToFavorite} >
+                    onPress={saveToFavorite}
+                  >
                     <Text> Add to Favorite</Text>
                   </TouchableOpacity>
 
-                  <View
-                    style={styles.screenSoundHoles}
-                  >
+                  <View style={styles.screenSoundHoles}>
                     <View
                       style={[
                         styles.screenSoundHole,
@@ -354,7 +291,6 @@ function Home({ navigation }) {
                         styles.screenSoundHole,
                         styles.screenSoundHoleMedium,
                       ]}
-
                     />
 
                     <View
@@ -365,25 +301,273 @@ function Home({ navigation }) {
                     />
                   </View>
                 </View>
-
-
               </View>
 
               <View style={styles.detailView}>
                 <View style={styles.pokeName}>{pokemon.name}</View>
                 <View style={styles.pokeDesc}>{pokemon.description} </View>
               </View>
-
             </View>
-
           </Pressable>
         </SafeAreaView>
       </View>
-
     </>
   );
-};
+}
 
 export default Home;
 
+const styles = StyleSheet.create({
+  cover: {
+    ...StyleSheet.absoluteFillObject,
+    top: 155,
+    zIndex: 1,
+    flexDirection: "row",
+    backgroundColor: "#FFEB66",
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderTopWidth: 2,
+    borderTopColor: "white",
+  },
 
+  coverHandle: {
+    height: 40,
+    width: 40,
+    // Orange
+    backgroundColor: "rgb(255, 165, 0)",
+    borderWidth: 2,
+    // Dark orange
+    borderColor: "black",
+    transform: [{ rotate: "45deg" }, { translateX: -30 }],
+  },
+  coverBinding: {
+    height: "100%",
+    width: 50,
+    backgroundColor: "rgba(0, 0, 0, 0.2)",
+    borderLeftWidth: 1,
+    borderLeftColor: "rgb(15, 15, 15)",
+  },
+  pokedexTouchable: {
+    flex: 1,
+  },
+  pokedex: {
+    flex: 1,
+    backgroundColor: "#FFEB66",
+  },
+  lights: {
+    flexDirection: "row",
+    borderBottomWidth: 2,
+    borderBottomColor: "white",
+    backgroundColor: "darkred",
+    paddingBottom: 15,
+  },
+  mainLight: {
+    marginLeft: 20,
+    height: 80,
+    width: 80,
+    // Light blue
+    backgroundColor: "rgb(75, 154, 244)",
+    borderRadius: 40,
+    borderWidth: 5,
+    borderColor: "white",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  mainLightInner: {
+    height: 40,
+    width: 40,
+    borderRadius: 20,
+    // Dark blue
+    backgroundColor: "rgb(20, 90, 170)",
+    shadowColor: "black",
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowRadius: 20,
+    shadowOpacity: 0.9,
+  },
+  redLight: {
+    marginLeft: 15,
+    height: 20,
+    width: 20,
+    borderRadius: 10,
+    // Red
+    backgroundColor: "rgb(255, 0, 0)",
+    borderWidth: 2,
+    // Dark red
+    borderColor: "rgb(200, 0, 0)",
+  },
+  orangeLight: {
+    marginLeft: 10,
+    height: 20,
+    width: 20,
+    borderRadius: 10,
+    // Orange
+    backgroundColor: "rgb(255, 165, 0)",
+    borderWidth: 2,
+    // Dark orange
+    borderColor: "rgb(200, 165, 0)",
+  },
+  greenLight: {
+    marginLeft: 10,
+    height: 20,
+    width: 20,
+    borderRadius: 10,
+    // Green
+    backgroundColor: "rgb(0, 150, 0)",
+    borderWidth: 2,
+    // Dark green
+    borderColor: "rgb(0, 100, 0)",
+  },
+
+  searchView: {
+    flex: 3,
+    backgroundColor: "red",
+    flexDirection: "row",
+    marginTop: 5,
+    marginLeft: 10,
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: "black",
+  },
+
+  buttonSearch: {
+    alignItems: "center",
+    backgroundColor: "grey",
+    padding: 10,
+    flex: 1,
+    borderTopRightRadius: 5,
+    borderBottomRightRadius: 5,
+    fontWeight: "bold",
+  },
+
+  buttonNavigation: {
+    backgroundColor: "green",
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 5,
+    marginHorizontal: 10,
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: "black",
+    fontWeight: "bold",
+  },
+
+  details: {
+    flexDirection: "column",
+    height: "100%",
+  },
+  screen: {
+    flex: 1,
+    backgroundColor: "white",
+    marginHorizontal: 20,
+    marginVertical: 30,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "black",
+  },
+  screenHeader: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 35,
+  },
+  screenHeaderHole: {
+    backgroundColor: "rgb(200, 0, 0)",
+    height: 10,
+    width: 10,
+    borderRadius: 5,
+    borderWidth: 2,
+    borderColor: "rgba(0, 0, 0, 0.15)",
+    marginHorizontal: 10,
+  },
+  screenPokemon: {
+    marginHorizontal: 30,
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "lightblue",
+    padding: 15,
+    borderWidth: 1,
+    borderColor: "black",
+  },
+  screenPokemonOverlay: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: "black",
+    zIndex: 1,
+  },
+  screenPokemonImage: {
+    height: 150,
+    width: 150,
+  },
+  screenSoundHoles: {
+    alignSelf: "flex-end",
+    justifyContent: "center",
+    alignItems: "flex-end",
+    height: 35,
+    marginRight: 30,
+  },
+  screenSoundHole: {
+    height: 2,
+    width: 40,
+    backgroundColor: "rgba(0, 0, 0, 0.4)",
+    marginBottom: 2,
+  },
+  screenSoundHoleLarge: {
+    width: 40,
+  },
+  screenSoundHoleMedium: {
+    width: 38,
+  },
+  screenSoundHoleSmall: {
+    width: 35,
+  },
+
+  buttonAddFavorit: {
+    width: 110,
+    height: 20,
+    backgroundColor: "yellow",
+    margin: 10,
+    marginRight: 30,
+    borderWidth: 1,
+    borderColor: "black",
+    borderRadius: 3,
+  },
+
+  detailView: {
+    flex: 1,
+    flexDirection: "column",
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 10,
+    borderColor: "black",
+    borderWidth: 2,
+  },
+
+  pokeName: {
+    flex: 1,
+    margin: 20,
+    backgroundColor: "green",
+    alignItems: "center",
+    fontSize: 30,
+    borderRadius: 5,
+    borderWidth: 1,
+    borderColor: "black",
+    color: "white",
+  },
+
+  pokeDesc: {
+    flex: 2,
+    margin: 20,
+    backgroundColor: "green",
+    height: 120,
+    fontSize: 20,
+    borderRadius: 5,
+    borderColor: "black",
+    borderWidth: 1,
+    padding: 5,
+    color: "white",
+  },
+});
