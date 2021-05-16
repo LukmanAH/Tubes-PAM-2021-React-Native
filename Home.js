@@ -426,9 +426,9 @@ const styles = StyleSheet.create({
   },
 
   inputTextFind: {
+     flex: 1,
      height: 40,
      paddingLeft: 5,
-     flex: 3,
      backgroundColor: "white",
   },
   
