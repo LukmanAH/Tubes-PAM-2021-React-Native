@@ -213,16 +213,7 @@ function Home({ navigation }) {
           <View style={{ flexDirection: "row" }}>
             <View style={styles.searchView}>
               <TextInput
-                style={{
-                  height: 40,
-                  paddingLeft: 5,
-                  flex: 3,
-                  backgroundColor: "white",
-                }}
-                placeholder="Type to search"
-                onChangeText={(text) => {
-                  setText(text);
-                }}
+                style={styles.inputTextFind}
               />
 
               <TouchableOpacity
@@ -347,6 +338,8 @@ const styles = StyleSheet.create({
     borderLeftWidth: 1,
     borderLeftColor: "rgb(15, 15, 15)",
   },
+ 
+  
   pokedexTouchable: {
     flex: 1,
   },
@@ -432,6 +425,13 @@ const styles = StyleSheet.create({
     borderColor: "black",
   },
 
+  inputTextFind: {
+     height: 40,
+     paddingLeft: 5,
+     flex: 3,
+     backgroundColor: "white",
+  },
+  
   buttonSearch: {
     alignItems: "center",
     backgroundColor: "grey",
