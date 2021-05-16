@@ -168,7 +168,7 @@ function Home({ navigation }) {
     };
   });
 
-  const url = "http://localhost/api/api.php";
+  const url = "http://localhost/api/api.php"; //setelah di hosting ubah url sesuai url hostingan
 
   const saveToFavorite = () => {
     var urlAksi = url + "/?op=create";
@@ -338,8 +338,8 @@ const styles = StyleSheet.create({
     borderLeftWidth: 1,
     borderLeftColor: "rgb(15, 15, 15)",
   },
- 
-  
+
+
   pokedexTouchable: {
     flex: 1,
   },
@@ -426,12 +426,12 @@ const styles = StyleSheet.create({
   },
 
   inputTextFind: {
-     flex: 1,
-     height: 40,
-     paddingLeft: 5,
-     backgroundColor: "white",
+    flex: 1,
+    height: 40,
+    paddingLeft: 5,
+    backgroundColor: "white",
   },
-  
+
   buttonSearch: {
     alignItems: "center",
     backgroundColor: "grey",
