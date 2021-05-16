@@ -295,8 +295,8 @@ function Home({ navigation }) {
               </View>
 
               <View style={styles.detailView}>
-                <View style={styles.pokeName}><Text>{pokemon.name}</Text></View>
-                <View style={styles.pokeDesc}><Text>{pokemon.description}</Text></View>
+                <Text style={styles.pokeName}>{pokemon.name}</Text>
+                <Text style={styles.pokeDesc}>{pokemon.description}</Text>
               </View>
             </View>
           </Pressable>
@@ -550,7 +550,7 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 20,
     backgroundColor: "green",
-    alignItems: "center",
+    textAlign: "center",
     fontSize: 30,
     borderRadius: 5,
     borderWidth: 1,
