@@ -295,8 +295,8 @@ function Home({ navigation }) {
               </View>
 
               <View style={styles.detailView}>
-                <View style={styles.pokeName}>{pokemon.name}</View>
-                <View style={styles.pokeDesc}>{pokemon.description} </View>
+                <View style={styles.pokeName}><Text>{pokemon.name}</Text></View>
+                <View style={styles.pokeDesc}><Text>{pokemon.description}</Text></View>
               </View>
             </View>
           </Pressable>
