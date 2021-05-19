@@ -214,6 +214,12 @@ function Home({ navigation }) {
             <View style={styles.searchView}>
               <TextInput
                 style={styles.inputTextFind}
+                placeholder="Type to find"
+                onChangeText={
+                  text => {
+                    setText(text)
+                  }
+                }
               />
 
               <TouchableOpacity
