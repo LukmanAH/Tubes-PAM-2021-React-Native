@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
-import { StyleSheet } from 'react-native'
+import { StyleSheet } from 'react-native';
 
 const Favorit = ({ navigation }) => {
 
@@ -36,6 +36,8 @@ class ListFavorite extends Component {
       nama: '',
       listData: [],
     };
+    //var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+
     this.url = "http://localhost/api/api.php";
   }
 
@@ -57,15 +59,14 @@ class ListFavorite extends Component {
 
 
   async klikName(id) {
-    navigation.navigate('home');
-    searchPokemon();
+    navigation.navigate('home')
   }
 
   async klikDelete(id) {
     await fetch(this.url + "/?op=delete&id=" + id)
       .then((response) => response.json())
       .then((json) => {
-        alert('Data berhasil didelete');
+        alert('Berhasil didelete');
         this.ambilListData();
       })
       .catch((error) => {

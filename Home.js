@@ -168,10 +168,11 @@ function Home({ navigation }) {
     };
   });
 
-  const url = "http://localhost/api/api.php"; //setelah di hosting ubah url sesuai url hostingan
+  const url = "http://10.120.34.65/api/api.php"; //setelah di hosting ubah url sesuai url hostingan
 
   const saveToFavorite = () => {
     var urlAksi = url + "/?op=create";
+
 
     fetch(urlAksi, {
       method: "post",
@@ -180,6 +181,8 @@ function Home({ navigation }) {
       },
       body: "nama=" + pokemon.name,
     }).then((response) => response.json());
+
+    alert('Berhasil Ditambahkan');
   };
 
   const [text, setText] = useState("raichu");
