@@ -4,8 +4,8 @@ import { StyleSheet } from 'react-native';
 
 const Favorit = ({ navigation }) => {
 
-  const goToHome = () => {
-    navigation.navigate('home')
+  const Back = () => {
+    navigation.navigate('profil')
   }
 
   return (
@@ -14,7 +14,7 @@ const Favorit = ({ navigation }) => {
 
         <TouchableOpacity
           style={styles.buttonNavigation}
-          onPress={goToHome}
+          onPress={Back}
         >
           <Text>Back</Text>
         </TouchableOpacity>

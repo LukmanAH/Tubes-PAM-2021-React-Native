@@ -64,11 +64,6 @@ function Home({ navigation }) {
     setPokemon(pokemon);
   };
 
-  const searchPokemon = async () => {
-    const pokemon = await fetchPokemon(text);
-
-    setPokemon(pokemon);
-  };
 
   useEffect(() => {
     updatePokemon();
@@ -130,25 +125,7 @@ function Home({ navigation }) {
     }
   };
 
-  const searchResult = () => {
-    // Close
-    translation.value = withTiming(
-      0,
-      {
-        duration: 500,
-      },
-      () => {
-        overlayOpacity.value = 1;
-        runOnJS(searchPokemon)();
-      }
-    );
-    Speech.stop();
 
-    // Open
-    translation.value = withTiming(dimensions.width, { duration: 500 }, () => {
-      runOnJS(sayPokemonName)();
-    });
-  };
 
   const coverStyle = useAnimatedStyle(() => {
     return {
@@ -168,29 +145,15 @@ function Home({ navigation }) {
     };
   });
 
-  const url = "http://10.120.34.65/api/api.php"; //setelah di hosting ubah url sesuai url hostingan
 
-  const saveToFavorite = () => {
-    var urlAksi = url + "/?op=create";
-
-
-    fetch(urlAksi, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: "nama=" + pokemon.name,
-    }).then((response) => response.json());
-
-    alert('Berhasil Ditambahkan');
-  };
 
   const [text, setText] = useState("raichu");
 
-  const goToFavorite = () => {
-    navigation.navigate("favorit");
+  const Login = () => {
+    navigation.navigate("login");
     Speech.stop();
   };
+
 
   return (
     <>
@@ -215,29 +178,19 @@ function Home({ navigation }) {
 
           <View style={{ flexDirection: "row" }}>
             <View style={styles.searchView}>
-              <TextInput
-                style={styles.inputTextFind}
-                placeholder="Type to find"
-                onChangeText={
-                  text => {
-                    setText(text)
-                  }
-                }
-              />
-
               <TouchableOpacity
                 style={styles.buttonSearch}
-                onPress={searchResult}
+                onPress={toggleCover}
               >
-                <Text>Find Pokemon</Text>
+                <Text>Random</Text>
               </TouchableOpacity>
             </View>
 
             <TouchableOpacity
               style={styles.buttonNavigation}
-              onPress={goToFavorite}
+              onPress={Login}
             >
-              <Text>My Favorites</Text>
+              <Text>Login</Text>
             </TouchableOpacity>
           </View>
 
@@ -264,12 +217,7 @@ function Home({ navigation }) {
                 </View>
 
                 <View style={{ flexDirection: "row", alignSelf: "flex-end" }}>
-                  <TouchableOpacity
-                    style={styles.buttonAddFavorit}
-                    onPress={saveToFavorite}
-                  >
-                    <Text> Add to Favorite</Text>
-                  </TouchableOpacity>
+
 
                   <View style={styles.screenSoundHoles}>
                     <View
@@ -434,12 +382,6 @@ const styles = StyleSheet.create({
     borderColor: "black",
   },
 
-  inputTextFind: {
-    flex: 1,
-    height: 40,
-    paddingLeft: 5,
-    backgroundColor: "white",
-  },
 
   buttonSearch: {
     alignItems: "center",
@@ -534,16 +476,6 @@ const styles = StyleSheet.create({
     width: 35,
   },
 
-  buttonAddFavorit: {
-    width: 110,
-    height: 20,
-    backgroundColor: "yellow",
-    margin: 10,
-    marginRight: 30,
-    borderWidth: 1,
-    borderColor: "black",
-    borderRadius: 3,
-  },
 
   detailView: {
     flex: 1,
