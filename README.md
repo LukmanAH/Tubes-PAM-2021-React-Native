@@ -16,5 +16,5 @@ Aplikasi Pokedex yang menampilkan pokemon, baik yang dicari maupun secara acak.
 
 - Clone Repository
 - Arahkan ke folder "Tubes-Pam-2021-React-Native" 
-- Jalankan "nmp install"
+- Jalankan "npm install"
 - Jalankan "npm start"
