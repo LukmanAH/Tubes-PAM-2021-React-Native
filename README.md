@@ -1,6 +1,6 @@
 # React Native Pokédex
 
-Aplikasi Pokedex yang menampilkan pokemon, baik yang dicari maupun secara acak.
+Aplikasi Pokedex yang menampilkan pokemon, baik yang dicari maupun secara acak. Aplikasi ini dibuat untuk memenuhi tugas mata kuliah Pemrograman Aplikasi Mobile (PAM).
 
 🛠️ File Api CRUD dan database [Backend PHP](http://github.com)
 
